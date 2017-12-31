@@ -4,14 +4,17 @@
 #
 Name     : SDL_mixer
 Version  : 1.2.12
-Release  : 5
+Release  : 6
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
 Summary  : Simple DirectMedia Layer - Sample Mixer Library
 Group    : Development/Tools
-License  : Artistic-1.0-Perl BSD-3-Clause GPL-2.0 LGPL-2.0
+License  : Artistic-1.0-Perl BSD-3-Clause LGPL-2.0 Zlib
 Requires: SDL_mixer-lib
 BuildRequires : SDL-dev
+BuildRequires : flac-dev
+BuildRequires : libogg-dev
+BuildRequires : mpg123-dev
 BuildRequires : pkgconfig(vorbisfile)
 
 %description
@@ -39,14 +42,19 @@ lib components for the SDL_mixer package.
 
 
 %prep
-cd ..
 %setup -q -n SDL_mixer-1.2.12
 
 %build
-%configure --disable-static
-make V=1  %{?_smp_mflags}
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C
+export SOURCE_DATE_EPOCH=1514733220
+%configure --disable-static --enable-music-ogg --enable-music-mp3
+make  %{?_smp_mflags}
 
 %install
+export SOURCE_DATE_EPOCH=1514733220
 rm -rf %{buildroot}
 %make_install
 
@@ -56,9 +64,10 @@ rm -rf %{buildroot}
 %files dev
 %defattr(-,root,root,-)
 /usr/include/SDL/SDL_mixer.h
-/usr/lib64/*.so
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libSDL_mixer.so
+/usr/lib64/pkgconfig/SDL_mixer.pc
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libSDL_mixer-1.2.so.0
+/usr/lib64/libSDL_mixer-1.2.so.0.12.0

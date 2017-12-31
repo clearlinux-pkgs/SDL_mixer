@@ -1,3 +1,6 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
 SDL-dev
+flac-dev
+mpg123-dev
+libogg-dev
