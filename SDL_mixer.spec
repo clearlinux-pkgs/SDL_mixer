@@ -4,7 +4,7 @@
 #
 Name     : SDL_mixer
 Version  : 1.2.12
-Release  : 6
+Release  : 7
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
 Summary  : Simple DirectMedia Layer - Sample Mixer Library
