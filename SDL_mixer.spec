@@ -4,13 +4,14 @@
 #
 Name     : SDL_mixer
 Version  : 1.2.12
-Release  : 8
+Release  : 9
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
-Summary  : Simple DirectMedia Layer - Sample Mixer Library
+Summary  : A simple multi-channel audio mixer
 Group    : Development/Tools
 License  : Artistic-1.0-Perl BSD-3-Clause LGPL-2.0 Zlib
-Requires: SDL_mixer-lib
+Requires: SDL_mixer-lib = %{version}-%{release}
+Requires: SDL_mixer-license = %{version}-%{release}
 BuildRequires : SDL-dev
 BuildRequires : flac-dev
 BuildRequires : libogg-dev
@@ -26,8 +27,9 @@ Tremor, SMPEG MP3, and libmad MP3 libraries.
 %package dev
 Summary: dev components for the SDL_mixer package.
 Group: Development
-Requires: SDL_mixer-lib
-Provides: SDL_mixer-devel
+Requires: SDL_mixer-lib = %{version}-%{release}
+Provides: SDL_mixer-devel = %{version}-%{release}
+Requires: SDL_mixer = %{version}-%{release}
 
 %description dev
 dev components for the SDL_mixer package.
@@ -36,9 +38,18 @@ dev components for the SDL_mixer package.
 %package lib
 Summary: lib components for the SDL_mixer package.
 Group: Libraries
+Requires: SDL_mixer-license = %{version}-%{release}
 
 %description lib
 lib components for the SDL_mixer package.
+
+
+%package license
+Summary: license components for the SDL_mixer package.
+Group: Default
+
+%description license
+license components for the SDL_mixer package.
 
 
 %prep
@@ -49,13 +60,36 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1514733220
+export SOURCE_DATE_EPOCH=1557076950
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --enable-music-ogg --enable-music-mp3
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1514733220
+export SOURCE_DATE_EPOCH=1557076950
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/SDL_mixer
+cp COPYING %{buildroot}/usr/share/package-licenses/SDL_mixer/COPYING
+cp VisualC/external/lib/x64/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.FLAC.txt
+cp VisualC/external/lib/x64/LICENSE.mikmod.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.mikmod.txt
+cp VisualC/external/lib/x64/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.ogg-vorbis.txt
+cp VisualC/external/lib/x64/LICENSE.smpeg.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.smpeg.txt
+cp VisualC/external/lib/x86/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.FLAC.txt
+cp VisualC/external/lib/x86/LICENSE.mikmod.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.mikmod.txt
+cp VisualC/external/lib/x86/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.ogg-vorbis.txt
+cp VisualC/external/lib/x86/LICENSE.smpeg.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.smpeg.txt
+cp Xcode/Frameworks/FLAC.framework/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_FLAC.framework_LICENSE.FLAC.txt
+cp Xcode/Frameworks/Ogg.framework/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_Ogg.framework_LICENSE.ogg-vorbis.txt
+cp Xcode/Frameworks/Vorbis.framework/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_Vorbis.framework_LICENSE.ogg-vorbis.txt
+cp Xcode/Frameworks/mikmod.framework/LICENSE.mikmod.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_mikmod.framework_LICENSE.mikmod.txt
+cp Xcode/Frameworks/smpeg.framework/LICENSE.smpeg.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_smpeg.framework_LICENSE.smpeg.txt
+cp timidity/COPYING %{buildroot}/usr/share/package-licenses/SDL_mixer/timidity_COPYING
 %make_install
 
 %files
@@ -71,3 +105,21 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/lib64/libSDL_mixer-1.2.so.0
 /usr/lib64/libSDL_mixer-1.2.so.0.12.0
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/SDL_mixer/COPYING
+/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.FLAC.txt
+/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.mikmod.txt
+/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.ogg-vorbis.txt
+/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.smpeg.txt
+/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.FLAC.txt
+/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.mikmod.txt
+/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.ogg-vorbis.txt
+/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.smpeg.txt
+/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_FLAC.framework_LICENSE.FLAC.txt
+/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_Ogg.framework_LICENSE.ogg-vorbis.txt
+/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_Vorbis.framework_LICENSE.ogg-vorbis.txt
+/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_mikmod.framework_LICENSE.mikmod.txt
+/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_smpeg.framework_LICENSE.smpeg.txt
+/usr/share/package-licenses/SDL_mixer/timidity_COPYING
