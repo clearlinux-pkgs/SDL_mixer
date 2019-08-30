@@ -4,3 +4,4 @@ SDL-dev
 flac-dev
 mpg123-dev
 libogg-dev
+libmodplug-dev

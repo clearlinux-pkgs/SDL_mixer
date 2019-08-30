@@ -4,16 +4,17 @@
 #
 Name     : SDL_mixer
 Version  : 1.2.12
-Release  : 9
+Release  : 13
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
-Summary  : A simple multi-channel audio mixer
+Summary  : Simple DirectMedia Layer - Sample Mixer Library
 Group    : Development/Tools
 License  : Artistic-1.0-Perl BSD-3-Clause LGPL-2.0 Zlib
 Requires: SDL_mixer-lib = %{version}-%{release}
 Requires: SDL_mixer-license = %{version}-%{release}
 BuildRequires : SDL-dev
 BuildRequires : flac-dev
+BuildRequires : libmodplug-dev
 BuildRequires : libogg-dev
 BuildRequires : mpg123-dev
 BuildRequires : pkgconfig(vorbisfile)
@@ -59,8 +60,9 @@ license components for the SDL_mixer package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1557076950
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1567187639
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -68,11 +70,13 @@ export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
-%configure --disable-static --enable-music-ogg --enable-music-mp3
+%configure --disable-static --enable-music-ogg \
+--enable-music-mp3 \
+--enable-music-mod-modplug
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1557076950
+export SOURCE_DATE_EPOCH=1567187639
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/SDL_mixer
 cp COPYING %{buildroot}/usr/share/package-licenses/SDL_mixer/COPYING
