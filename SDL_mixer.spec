@@ -4,7 +4,7 @@
 #
 Name     : SDL_mixer
 Version  : 1.2.12
-Release  : 13
+Release  : 14
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
 Summary  : Simple DirectMedia Layer - Sample Mixer Library
@@ -55,20 +55,21 @@ license components for the SDL_mixer package.
 
 %prep
 %setup -q -n SDL_mixer-1.2.12
+cd %{_builddir}/SDL_mixer-1.2.12
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567187639
+export SOURCE_DATE_EPOCH=1604361396
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --enable-music-ogg \
 --enable-music-mp3 \
@@ -76,24 +77,24 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1567187639
+export SOURCE_DATE_EPOCH=1604361396
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/SDL_mixer
-cp COPYING %{buildroot}/usr/share/package-licenses/SDL_mixer/COPYING
-cp VisualC/external/lib/x64/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.FLAC.txt
-cp VisualC/external/lib/x64/LICENSE.mikmod.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.mikmod.txt
-cp VisualC/external/lib/x64/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.ogg-vorbis.txt
-cp VisualC/external/lib/x64/LICENSE.smpeg.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.smpeg.txt
-cp VisualC/external/lib/x86/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.FLAC.txt
-cp VisualC/external/lib/x86/LICENSE.mikmod.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.mikmod.txt
-cp VisualC/external/lib/x86/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.ogg-vorbis.txt
-cp VisualC/external/lib/x86/LICENSE.smpeg.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.smpeg.txt
-cp Xcode/Frameworks/FLAC.framework/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_FLAC.framework_LICENSE.FLAC.txt
-cp Xcode/Frameworks/Ogg.framework/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_Ogg.framework_LICENSE.ogg-vorbis.txt
-cp Xcode/Frameworks/Vorbis.framework/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_Vorbis.framework_LICENSE.ogg-vorbis.txt
-cp Xcode/Frameworks/mikmod.framework/LICENSE.mikmod.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_mikmod.framework_LICENSE.mikmod.txt
-cp Xcode/Frameworks/smpeg.framework/LICENSE.smpeg.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_smpeg.framework_LICENSE.smpeg.txt
-cp timidity/COPYING %{buildroot}/usr/share/package-licenses/SDL_mixer/timidity_COPYING
+cp %{_builddir}/SDL_mixer-1.2.12/COPYING %{buildroot}/usr/share/package-licenses/SDL_mixer/d7f0884777ded9bd4524a212b8e5b6dce8476114
+cp %{_builddir}/SDL_mixer-1.2.12/VisualC/external/lib/x64/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/500bbacec5d91f0bbdf53a86846bb3a3e5026283
+cp %{_builddir}/SDL_mixer-1.2.12/VisualC/external/lib/x64/LICENSE.mikmod.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/4d30d8332a334f2b91442d05c0bb7c17850c2bdc
+cp %{_builddir}/SDL_mixer-1.2.12/VisualC/external/lib/x64/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/45177cdb4b0a4675541af8784ef0f11a574b646d
+cp %{_builddir}/SDL_mixer-1.2.12/VisualC/external/lib/x64/LICENSE.smpeg.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/bfb8c297e167d90d655d79df6962ddf81d99072c
+cp %{_builddir}/SDL_mixer-1.2.12/VisualC/external/lib/x86/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/500bbacec5d91f0bbdf53a86846bb3a3e5026283
+cp %{_builddir}/SDL_mixer-1.2.12/VisualC/external/lib/x86/LICENSE.mikmod.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/4d30d8332a334f2b91442d05c0bb7c17850c2bdc
+cp %{_builddir}/SDL_mixer-1.2.12/VisualC/external/lib/x86/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/45177cdb4b0a4675541af8784ef0f11a574b646d
+cp %{_builddir}/SDL_mixer-1.2.12/VisualC/external/lib/x86/LICENSE.smpeg.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/bfb8c297e167d90d655d79df6962ddf81d99072c
+cp %{_builddir}/SDL_mixer-1.2.12/Xcode/Frameworks/FLAC.framework/LICENSE.FLAC.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/11464e106e37066a94a23fe4912581799daa3e41
+cp %{_builddir}/SDL_mixer-1.2.12/Xcode/Frameworks/Ogg.framework/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/4406aeb00f12a2c9cfba8066eef1a7a0c9b32f43
+cp %{_builddir}/SDL_mixer-1.2.12/Xcode/Frameworks/Vorbis.framework/LICENSE.ogg-vorbis.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/4406aeb00f12a2c9cfba8066eef1a7a0c9b32f43
+cp %{_builddir}/SDL_mixer-1.2.12/Xcode/Frameworks/mikmod.framework/LICENSE.mikmod.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/44f7289042b71631acac29b2f143330d2da2479e
+cp %{_builddir}/SDL_mixer-1.2.12/Xcode/Frameworks/smpeg.framework/LICENSE.smpeg.txt %{buildroot}/usr/share/package-licenses/SDL_mixer/5fb362ef1680e635fe5fb212b55eef4db9ead48f
+cp %{_builddir}/SDL_mixer-1.2.12/timidity/COPYING %{buildroot}/usr/share/package-licenses/SDL_mixer/73cf7f25e9333afd31ef83960d2e0c94e986f3c5
 %make_install
 
 %files
@@ -112,18 +113,13 @@ cp timidity/COPYING %{buildroot}/usr/share/package-licenses/SDL_mixer/timidity_C
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/SDL_mixer/COPYING
-/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.FLAC.txt
-/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.mikmod.txt
-/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.ogg-vorbis.txt
-/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x64_LICENSE.smpeg.txt
-/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.FLAC.txt
-/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.mikmod.txt
-/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.ogg-vorbis.txt
-/usr/share/package-licenses/SDL_mixer/VisualC_external_lib_x86_LICENSE.smpeg.txt
-/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_FLAC.framework_LICENSE.FLAC.txt
-/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_Ogg.framework_LICENSE.ogg-vorbis.txt
-/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_Vorbis.framework_LICENSE.ogg-vorbis.txt
-/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_mikmod.framework_LICENSE.mikmod.txt
-/usr/share/package-licenses/SDL_mixer/Xcode_Frameworks_smpeg.framework_LICENSE.smpeg.txt
-/usr/share/package-licenses/SDL_mixer/timidity_COPYING
+/usr/share/package-licenses/SDL_mixer/11464e106e37066a94a23fe4912581799daa3e41
+/usr/share/package-licenses/SDL_mixer/4406aeb00f12a2c9cfba8066eef1a7a0c9b32f43
+/usr/share/package-licenses/SDL_mixer/44f7289042b71631acac29b2f143330d2da2479e
+/usr/share/package-licenses/SDL_mixer/45177cdb4b0a4675541af8784ef0f11a574b646d
+/usr/share/package-licenses/SDL_mixer/4d30d8332a334f2b91442d05c0bb7c17850c2bdc
+/usr/share/package-licenses/SDL_mixer/500bbacec5d91f0bbdf53a86846bb3a3e5026283
+/usr/share/package-licenses/SDL_mixer/5fb362ef1680e635fe5fb212b55eef4db9ead48f
+/usr/share/package-licenses/SDL_mixer/73cf7f25e9333afd31ef83960d2e0c94e986f3c5
+/usr/share/package-licenses/SDL_mixer/bfb8c297e167d90d655d79df6962ddf81d99072c
+/usr/share/package-licenses/SDL_mixer/d7f0884777ded9bd4524a212b8e5b6dce8476114
