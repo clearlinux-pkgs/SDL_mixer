@@ -1,9 +1,8 @@
-Configure miss: windres
-Configure miss: linux-gnu-windres
-Configure miss: libmikmod-config
-Configure miss: fluidsynth.h usability
-Configure miss: fluidsynth.h presence
-Configure miss: fluidsynth.h
-Configure miss: fluid_player_add_mem in -lfluidsynth
-Configure miss: smpeg-config
 Configure miss: SMPEG - version >= 0.4.3
+Configure miss: fluid_player_add_mem in -lfluidsynth
+Configure miss: fluidsynth.h
+Configure miss: fluidsynth.h presence
+Configure miss: fluidsynth.h usability
+Configure miss: linux-gnu-windres
+Configure miss: smpeg-config
+Configure miss: windres
