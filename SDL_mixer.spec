@@ -7,7 +7,7 @@
 #
 Name     : SDL_mixer
 Version  : 1.2.12
-Release  : 15
+Release  : 16
 URL      : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
 Source0  : https://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.12.tar.gz
 Summary  : Simple DirectMedia Layer - Sample Mixer Library
@@ -21,6 +21,7 @@ BuildRequires : flac-dev
 BuildRequires : libmodplug-dev
 BuildRequires : libogg-dev
 BuildRequires : mpg123-dev
+BuildRequires : pkgconfig(fluidsynth)
 BuildRequires : pkgconfig(libmikmod)
 BuildRequires : pkgconfig(vorbisfile)
 # Suppress stripping binaries
@@ -70,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1732126565
+export SOURCE_DATE_EPOCH=1732126743
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -106,7 +107,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1732126565
+export SOURCE_DATE_EPOCH=1732126743
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/SDL_mixer
 cp %{_builddir}/SDL_mixer-%{version}/COPYING %{buildroot}/usr/share/package-licenses/SDL_mixer/d7f0884777ded9bd4524a212b8e5b6dce8476114 || :
